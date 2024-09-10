@@ -1,0 +1,631 @@
+{
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "CaseAlreadySettled",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CaseNotFound",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InsufficientFunds",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotAuthorized",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "plaintiff",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "defendant",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "caseDetails",
+						"type": "string"
+					}
+				],
+				"name": "CaseOpened",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "verdict",
+						"type": "bytes"
+					}
+				],
+				"name": "CaseSettled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "submitter",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "evidence",
+						"type": "bytes"
+					}
+				],
+				"name": "EvidenceSubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "payer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "FeesPaid",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"name": "cases",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "plaintiff",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "defendant",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "caseDetails",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isSettled",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint64",
+						"name": "attestationId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint256",
+						"name": "filingFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "settlementFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "verdict",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					}
+				],
+				"name": "getCaseDetails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "plaintiff",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "defendant",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "caseDetails",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "isSettled",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint64",
+								"name": "attestationId",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint256",
+								"name": "filingFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "settlementFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bytes",
+								"name": "verdict",
+								"type": "bytes"
+							},
+							{
+								"internalType": "bytes[]",
+								"name": "evidenceList",
+								"type": "bytes[]"
+							}
+						],
+						"internalType": "struct dispute.ECaseData",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserCases",
+				"outputs": [
+					{
+						"internalType": "uint64[]",
+						"name": "",
+						"type": "uint64[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "defendant",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "caseDetails",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "filingFee",
+						"type": "uint256"
+					}
+				],
+				"name": "openCase",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "schemaId",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "instance",
+						"type": "address"
+					}
+				],
+				"name": "setSPInstance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "schemaId_",
+						"type": "uint64"
+					}
+				],
+				"name": "setSchemaID",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bytes",
+						"name": "verdict",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "settlementFee",
+						"type": "uint256"
+					}
+				],
+				"name": "settleCase",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "spInstance",
+				"outputs": [
+					{
+						"internalType": "contract ISP",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "caseId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bytes",
+						"name": "evidence",
+						"type": "bytes"
+					}
+				],
+				"name": "submitEvidence",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "userCases",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"author": "holyaustin",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"getCaseDetails(uint64)": {
+					"params": {
+						"caseId": "The ID of the case for which details are requested."
+					},
+					"returns": {
+						"_0": "The `ECaseData` struct containing the case details."
+					}
+				},
+				"getUserCases(address)": {
+					"params": {
+						"user": "The address of the user for which case IDs are requested."
+					},
+					"returns": {
+						"_0": "An array of case IDs associated with the user."
+					}
+				},
+				"openCase(address,string,uint256)": {
+					"details": "The caller must send the required filing fee along with the transaction.",
+					"params": {
+						"caseDetails": "A string containing the details of the case.",
+						"defendant": "The address of the defendant in the case.",
+						"filingFee": "The filing fee required to open the case."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"setSPInstance(address)": {
+					"details": "Only the contract owner can call this function.",
+					"params": {
+						"instance": "The address of the Sign Protocol instance."
+					}
+				},
+				"setSchemaID(uint64)": {
+					"details": "Only the contract owner can call this function.",
+					"params": {
+						"schemaId_": "The schema ID to be used for attestations."
+					}
+				},
+				"settleCase(uint64,bytes,uint256)": {
+					"details": "Only the contract owner can call this function. The caller must send the required settlement fee along with the transaction.",
+					"params": {
+						"caseId": "The ID of the case to be settled.",
+						"settlementFee": "The settlement fee required to settle the case.",
+						"verdict": "The verdict for the case."
+					}
+				},
+				"submitEvidence(uint64,bytes)": {
+					"details": "Only the plaintiff or defendant can submit evidence for a case.",
+					"params": {
+						"caseId": "The ID of the case for which evidence is being submitted.",
+						"evidence": "The evidence data to be submitted."
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"withdrawFunds(address,uint256)": {
+					"details": "Only the contract owner can call this function.",
+					"params": {
+						"amount": "The amount of funds to be withdrawn.",
+						"recipient": "The address to which the funds will be transferred."
+					}
+				}
+			},
+			"title": "dispute",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"constructor": {
+					"notice": "Initializes the contract and sets the contract owner."
+				},
+				"getCaseDetails(uint64)": {
+					"notice": "Retrieves the details of a court case."
+				},
+				"getUserCases(address)": {
+					"notice": "Retrieves the list of case IDs for a given user."
+				},
+				"openCase(address,string,uint256)": {
+					"notice": "Opens a new court case."
+				},
+				"setSPInstance(address)": {
+					"notice": "Sets the Sign Protocol instance address."
+				},
+				"setSchemaID(uint64)": {
+					"notice": "Sets the schema ID for creating attestations."
+				},
+				"settleCase(uint64,bytes,uint256)": {
+					"notice": "Settles a court case with a verdict."
+				},
+				"submitEvidence(uint64,bytes)": {
+					"notice": "Submits evidence for a court case."
+				},
+				"withdrawFunds(address,uint256)": {
+					"notice": "Withdraws funds from the contract balance to a specified recipient."
+				}
+			},
+			"notice": "A contract for managing court cases using the Sign Protocol.",
+			"version": 1
+		}
+	}
+}
